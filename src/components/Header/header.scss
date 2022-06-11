@@ -1,0 +1,36 @@
+.header {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: #e3e3e3;
+
+    .container {
+        width: 100%;
+        max-width: 1400px;
+        display: flex;
+        justify-content: space-between;
+
+        .title-header {
+            margin: 16px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .options {
+            display: flex;
+            align-items: center;
+
+            .favorites {
+                padding: 16px;
+                text-decoration: none;
+                color: #000;
+            }
+
+            .filter {
+                padding: 16px;
+                cursor: pointer;
+            }
+        }
+    }
+}

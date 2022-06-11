@@ -1,0 +1,49 @@
+.book {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    .info-book {
+        .title-book {
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        .download-count {
+            font-size: 13px;
+        }
+    }
+    .buttons {
+        // margin-top: 10px;
+        & > a {
+            text-decoration: none;
+            color: #000;
+        }
+        .button {
+            padding: 10px 0;
+            width: 100%;
+            border-radius: 10px;
+            font-weight: 500;
+            text-align: center;
+            transition: 0.5s;
+
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(0.95);
+            }
+        }
+
+        .add-fav-button {
+            padding: 20px 0;
+        }
+
+        .read-button {
+            background-color: #4c57f5;
+            color: #fff;
+        }
+    }
+}
