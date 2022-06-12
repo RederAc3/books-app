@@ -14,7 +14,7 @@ const App = () => {
   library.add(faHeart, faFilter);
 
   const [books, setBooks] = useState();
-  const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')));
+  const [favorites, setFavorites] = useState(localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : []);
 
   const fetchBooks = async () => {
     const response = await axios.get('https://gnikdroy.pythonanywhere.com/api/book/');
