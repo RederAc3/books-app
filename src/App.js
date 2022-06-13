@@ -9,6 +9,7 @@ import './App.scss';
 
 import Book from './components/Book/Book';
 import Header from './components/Header/Header';
+import Info from './components/Info/Info';
 
 const App = () => {
   library.add(faHeart, faFilter, faMagnifyingGlass);
@@ -57,8 +58,8 @@ const App = () => {
       />
       <div className="App">
         {!isLoading ? (
-          books.length ? books.map((book, key) => <Book key={key} props={book} favorites={favorites} setFavorites={setFavorites} />) : 'Nie znaleziono wyników'
-        ) : 'Ładowanie biblioteki'}
+          books.length ? books.map((book, key) => <Book key={key} props={book} favorites={favorites} setFavorites={setFavorites} />) : <Info message={'Nie znaleziono pasujących książek'} />
+        ) : <Info loading={isLoading}/>}
       </div>
     </>
   );
