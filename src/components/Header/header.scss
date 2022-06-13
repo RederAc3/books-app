@@ -39,16 +39,35 @@
                     }
                 }
             }
-            .favorites {
-                padding: 16px;
-                text-decoration: none;
-                color: #fff;
-            }
+            .buttons-container {
+                display: flex;
+                
+                .favorites {
+                    padding: 16px;
+                    text-decoration: none;
+                    color: #fff;
+                }
 
-            .filter {
-                padding: 16px;
-                color: #fff;
-                cursor: pointer;
+                .filter {
+                    padding: 16px;
+                    color: #fff;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .header {
+        height: auto;
+
+        .container {
+            flex-direction: column;
+            align-items: center;
+
+            .options {
+                flex-direction: column;
             }
         }
     }
