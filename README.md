@@ -12,6 +12,6 @@ Preview: [rederac3.github.io/books-app](https://rederac3.github.io/books-app/)
 
 - [x] Adding a book to favorites
 
-- [ ] Search books
+- [x] Search books
 
 - [ ] Filter books
