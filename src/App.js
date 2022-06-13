@@ -1,9 +1,9 @@
-// import logo from './logo.svg';
+import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHeart, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faFilter, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import './App.scss';
 
@@ -11,21 +11,32 @@ import Book from './components/Book/Book';
 import Header from './components/Header/Header';
 
 const App = () => {
-  library.add(faHeart, faFilter);
+  library.add(faHeart, faFilter, faMagnifyingGlass);
 
   const [books, setBooks] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const [favorites, setFavorites] = useState(localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : []);
+  const [searchValue, setSearchValue] = useState('');
 
   const fetchBooks = async () => {
     const response = await axios.get('https://gnikdroy.pythonanywhere.com/api/book/');
     setBooks(response.data.results);
+    setIsLoading(false);
   };
+
+  const searchSubmitted = async () => {
+    console.log("start-search: ", searchValue);
+    console.log(books)
+
+    setIsLoading(true);
+    const response = await axios.get(`https://gnikdroy.pythonanywhere.com/api/book?search=${searchValue}`);
+    setBooks(response.data.results);
+    setIsLoading(false);
+
+  }
 
   useEffect(() => {
     fetchBooks();
-  }, []);
-
-  useEffect(() => {
     const items = JSON.parse(localStorage.getItem('favorites'));
     if (items) {
       setFavorites(items);
@@ -36,14 +47,18 @@ const App = () => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
-
   return (
     <>
-      <Header favorites={favorites} />
+      <Header
+        favorites={favorites}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        searchSubmitted={searchSubmitted}
+      />
       <div className="App">
-        {books ? (
-          books.map((book, key) => <Book key={key} props={book} favorites={favorites} setFavorites={setFavorites} />)
-        ) : 'loading'}
+        {!isLoading ? (
+          books.length ? books.map((book, key) => <Book key={key} props={book} favorites={favorites} setFavorites={setFavorites} />) : 'Nie znaleziono wyników'
+        ) : 'Ładowanie biblioteki'}
       </div>
     </>
   );

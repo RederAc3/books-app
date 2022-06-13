@@ -3,7 +3,7 @@
     height: 50px;
     display: flex;
     justify-content: center;
-    background-color: #e3e3e3;
+    background-color: #4c57f5;
 
     .container {
         width: 100%;
@@ -14,21 +14,40 @@
         .title-header {
             margin: 16px;
             text-decoration: none;
-            color: #000;
+            font-weight: 600;
+            color: #fff;
         }
 
         .options {
             display: flex;
             align-items: center;
 
+            .search-container {
+                display: flex;
+                align-items: center;
+
+                .search-input {
+                    padding: 5px;
+                }
+
+                .search-icon {
+                    padding: 5px 10px;
+                    color: #fff;
+
+                    & > :hover {
+                        cursor: pointer;
+                    }
+                }
+            }
             .favorites {
                 padding: 16px;
                 text-decoration: none;
-                color: #000;
+                color: #fff;
             }
 
             .filter {
                 padding: 16px;
+                color: #fff;
                 cursor: pointer;
             }
         }
