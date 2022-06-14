@@ -6,12 +6,12 @@ Preview: [rederac3.github.io/books-app](https://rederac3.github.io/books-app/)
 
 ✅ Adding a book to favorites 
 
-- [x] List Books
+✅ List Books
 
-- [x] Read book
+✅ Read book
 
-- [x] Adding a book to favorites
+✅ Adding a book to favorites
 
-- [x] Search books
+✅ Search books
 
 - [ ] Filter books
