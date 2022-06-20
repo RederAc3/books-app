@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './header.scss';
 
-const Header = ({ favorites, searchValue, setSearchValue, searchSubmitted }) => {
+const Header = ({ favorites, searchValue, setSearchValue, searchSubmitted, filterBooks }) => {
 
     return (
         <div className="header">
@@ -20,7 +20,7 @@ const Header = ({ favorites, searchValue, setSearchValue, searchSubmitted }) => 
                             <FontAwesomeIcon icon="fa-heart" />
                             <span> {favorites.length ? `(${favorites.length})` : null}</span>
                         </a>
-                        <div className="filter">
+                        <div className="filter" onClick={filterBooks}>
                             <FontAwesomeIcon icon="fa-filter" />
                         </div>
                     </div>

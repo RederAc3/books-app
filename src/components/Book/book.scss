@@ -19,6 +19,9 @@
     margin: 10px;
     border-radius: 10px;
     .info-book {
+        display: flex;
+        flex-direction: column;
+
         .title-book {
             font-weight: 700;
             margin-bottom: 0;
