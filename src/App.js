@@ -16,7 +16,9 @@ const App = () => {
   library.add(faHeart, faFilter, faMagnifyingGlass);
 
   const [books, setBooks] = useState();
+  const [filteredBooks, setFilteredBooks] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [isFiltering, setIsFiltering] = useState(false);
   const [favorites, setFavorites] = useState(localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : []);
   const [searchValue, setSearchValue] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -30,6 +32,7 @@ const App = () => {
   const searchSubmitted = async () => {
 
     setIsLoading(true);
+    setIsFiltering(false)
     const response = await axios.get(`https://gnikdroy.pythonanywhere.com/api/book?search=${searchValue}`);
     setBooks(response.data.results);
     setIsLoading(false);
@@ -42,9 +45,23 @@ const App = () => {
     }
 
     if (lang === 'en' || lang === 'pl') {
-      setBooks(books.filter(book => book.languages[0] === lang))
+      setFilteredBooks(books.filter(book => book.languages[0] === lang))
+      setIsFiltering(true)
     }
   }
+
+  const removeFilter = () => {
+    setIsFiltering(false);
+    setShowModal(!showModal);
+  }
+
+  const closeModal = () => {
+    setShowModal(!showModal);
+  }
+
+  useEffect(() => {
+    showModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'unset';
+ }, [ showModal ]);
 
   useEffect(() => {
     fetchBooks();
@@ -60,6 +77,12 @@ const App = () => {
 
   return (
     <>
+      <Modal
+        showModal={showModal}
+        filter={filterBooks}
+        removeFilter={removeFilter}
+        closeModal={closeModal}
+      />
       <Header
         favorites={favorites}
         searchValue={searchValue}
@@ -67,10 +90,11 @@ const App = () => {
         searchSubmitted={searchSubmitted}
         filterBooks={filterBooks}
       />
-      <Modal showModal={showModal} closeModal={filterBooks} />
       <div className="App">
         {!isLoading ? (
-          books.length ? books.map((book, key) => <Book key={key} props={book} favorites={favorites} setFavorites={setFavorites} />) : <Info message={'Nie znaleziono pasujących książek'} />
+          isFiltering ? (
+            filteredBooks.length ? filteredBooks.map((book, key) => <Book key={key} props={book} favorites={favorites} setFavorites={setFavorites} />) : <Info message={'Nie znaleziono pasujących książek'} />
+          ) : books.length ? books.map((book, key) => <Book key={key} props={book} favorites={favorites} setFavorites={setFavorites} />) : <Info message={'Nie znaleziono pasujących książek'} />
         ) : <Info loading={isLoading} />}
       </div>
     </>
