@@ -16,10 +16,10 @@ const Header = ({ favorites, searchValue, setSearchValue, searchSubmitted, filte
                         </div>
                     </div>
                     <div className="buttons-container">
-                        <a className="favorites" href="/favorites">
+                        <div className="favorites">
                             <FontAwesomeIcon icon="fa-heart" />
                             <span> {favorites.length ? `(${favorites.length})` : null}</span>
-                        </a>
+                        </div>
                         <div className="filter" onClick={filterBooks}>
                             <FontAwesomeIcon icon="fa-filter" />
                         </div>
