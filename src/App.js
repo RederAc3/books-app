@@ -45,8 +45,8 @@ const App = () => {
     }
 
     if (lang === 'en' || lang === 'pl') {
-      setFilteredBooks(books.filter(book => book.languages[0] === lang))
-      setIsFiltering(true)
+      setFilteredBooks(books.filter(book => book.languages[0] === lang));
+      setIsFiltering(true);
     }
   }
 
@@ -61,7 +61,7 @@ const App = () => {
 
   useEffect(() => {
     showModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'unset';
- }, [ showModal ]);
+  }, [showModal]);
 
   useEffect(() => {
     fetchBooks();
@@ -91,11 +91,20 @@ const App = () => {
         filterBooks={filterBooks}
       />
       <div className="App">
-        {!isLoading ? (
-          isFiltering ? (
-            filteredBooks.length ? filteredBooks.map((book, key) => <Book key={key} props={book} favorites={favorites} setFavorites={setFavorites} />) : <Info message={'Nie znaleziono pasujących książek'} />
-          ) : books.length ? books.map((book, key) => <Book key={key} props={book} favorites={favorites} setFavorites={setFavorites} />) : <Info message={'Nie znaleziono pasujących książek'} />
-        ) : <Info loading={isLoading} />}
+        {
+          !isLoading ? (
+            isFiltering ? (
+
+              filteredBooks.length ? (
+                filteredBooks.map((book, key) => <Book key={key} props={book} favorites={favorites} setFavorites={setFavorites} />)
+              ) : <Info message={'Nie znaleziono pasujących książek'} />
+
+            ) : books.length ? (
+              books.map((book, key) => <Book key={key} props={book} favorites={favorites} setFavorites={setFavorites} />)
+
+            ) : <Info message={'Nie znaleziono pasujących książek'} />
+          ) : <Info loading={isLoading} />
+        }
       </div>
     </>
   );

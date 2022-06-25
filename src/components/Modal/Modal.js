@@ -16,8 +16,6 @@ const Modal = props => {
         return null;
     }
 
-
-
     return (
         <>
             <div onClick={closeModal} className="modal-wrapper">

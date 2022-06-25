@@ -15,3 +15,8 @@ Preview: [rederac3.github.io/books-app](https://rederac3.github.io/books-app/)
 ✅ Search books
 
 ✅ Filter books
+
+#### ToDo 🛠
+
+- [] Add pagination
+
