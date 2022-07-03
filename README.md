@@ -18,5 +18,5 @@ Preview: [rederac3.github.io/books-app](https://rederac3.github.io/books-app/)
 
 #### ToDo 🛠
 
-- [] Add pagination
+- [ ] Add pagination
 
